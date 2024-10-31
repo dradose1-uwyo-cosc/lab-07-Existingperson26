@@ -1,9 +1,9 @@
-# Your Name Here
+# Peter Martinez
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
+# Submission Date 10/31/2024
+# Lab 07
+# Lab Section: 12
+# Sources, people worked with, help given to: Cole Jordan helped me on the last part because it was too confusing
 # your
 # comments
 # here
@@ -18,6 +18,13 @@
 # You will continue to prompt the user until a proper integer value is entered
 
 factorial = 1
+instance = 1
+upBound = input("Please input an upper boundary")
+upBound = int(upBound)
+while instance <= upBound:
+    factorial *= instance
+    instance += 1
+    ## print(factorial)
 
 print(f"The result of the factorial based on the given bound is {factorial}")
 
@@ -36,10 +43,26 @@ print("*"*75)
     # I recommend checking out: https://www.w3schools.com/python/ref_string_replace.asp to figure out how one may remove a character from a string
 # All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
 # The sum should start at 0 
+active = True
+totalSum = 0
+while active:
+    sumAsk = input("Please insert a number to be added. Type 'exit' to stop the program.").lower()
+    if sumAsk != "exit":
+        if sumAsk.startswith("-"):
+            sumAsk.removeprefix("-")
+            totalSum += int(sumAsk)
+            print(sumAsk)
+        elif sumAsk.isdigit():
+            if sumAsk.isdigit():
+                totalSum += int(sumAsk)
+            else:
+                print("Enter a real number!")
+                continue
+    else:
+        active = False
+        
 
-num_sum = 0 
-
-print(f"Your final sum is {num_sum}")
+print(f"Your final sum is {totalSum}")
 
 print("*"*75)
 # Now you will be creating a two operand calculator
@@ -59,4 +82,56 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-        
+active = True
+def add(num1, num2):
+    return num1+num2
+
+def subtract(num1,num2):
+    return num1-num2
+
+def mult(num1,num2):
+    return num1*num2
+
+def div(num1,num2):
+    return num1/num2
+
+def rem(num1,num2):
+    return num1%num2
+
+while active:
+    equAsk = input("Please input an equation")
+    if equAsk.lower() != "exit":
+        operator = ""
+        check = False
+        for num in equAsk:
+            if not num.isdigit():
+                if num == "+" or num == "-" or num == "*" or num == "/" or num == "%":
+                    operator = num
+                elif num == " ":
+                    equAsk.replace("", '')
+                else:
+                    "Please input something else"
+                    check = True
+    if check == True:
+        continue
+
+    equation = equAsk.split(operator)
+
+    equation[0] = int(equation[0])
+    equation[1] = int(equation[1])
+
+    answer = 0
+
+    if operator == "+":
+        answer = add(equation[0], equation[1])
+    elif operator == "-":
+        answer = subtract(equation[0], equation[1])
+    elif operator == "*":
+        answer = mult(equation[0], equation[1])
+    elif operator == "/":
+        answer = div(equation[0], equation[1])
+    elif operator == "%":
+        answer = rem(equation[0], equation[1])
+
+    print(f"The answer to the equation given is {answer}")
+
